@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ivan & Rose 婚禮 · 2026.07.05</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --border:#e5e5e5;--border2:#d0d0d0;
+  --bg:#fff;--bg2:#f8f8f8;--bg3:#f0f0f0;
+  --txt:#1a1a1a;--txt2:#555;--txt3:#999;
+  --green:#1D9E75;
+  --teal-bg:#E1F5EE;--teal-txt:#085041;
+  --blue-bg:#E6F1FB;--blue-txt:#185FA5;
+  --purple-bg:#EEEDFE;--purple-txt:#3C3489;
+  --pink-bg:#FBEAF0;--pink-txt:#72243E;
+  --amber-bg:#FAEEDA;--amber-txt:#633806;
+  --red-bg:#FCEBEB;--red-txt:#791F1F;
+  --green-bg:#EAF3DE;--green-txt:#27500A;
+  --coral-bg:#FAECE7;--coral-txt:#712B13;
+  --r:8px;--rl:12px;
+}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f5f5f5;color:var(--txt);min-height:100vh}
+.app{max-width:480px;margin:0 auto;background:var(--bg);min-height:100vh;padding-bottom:20px}
+
+.hdr{background:var(--bg);padding:1.25rem 1rem 0.75rem;border-bottom:1px solid var(--border)}
+.hdr-title{font-size:18px;font-weight:700;margin-bottom:3px}
+.hdr-sub{font-size:13px;color:var(--txt2);margin-bottom:2px}
+.hdr-date{font-size:11px;color:var(--txt3)}
+
+.tab-radio{display:none}
+.tabs-nav{display:flex;background:var(--bg);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100}
+.tab-lbl{flex:1;padding:8px 1px 7px;font-size:9px;text-align:center;cursor:pointer;color:var(--txt3);border-bottom:2px solid transparent;line-height:1.4;user-select:none}
+.tab-lbl span{display:block;font-size:14px;margin-bottom:1px}
+
+#t1:checked ~ .tabs-nav .lbl1,
+#t6:checked ~ .tabs-nav .lbl6,
+#t2:checked ~ .tabs-nav .lbl2,
+#t3:checked ~ .tabs-nav .lbl3,
+#t4:checked ~ .tabs-nav .lbl4,
+#t5:checked ~ .tabs-nav .lbl5{color:var(--txt);border-bottom:2px solid var(--txt);font-weight:700}
+
+.tab-panel{display:none;padding:1rem}
+#t1:checked ~ .panels .p1,
+#t6:checked ~ .panels .p6,
+#t2:checked ~ .panels .p2,
+#t3:checked ~ .panels .p3,
+#t4:checked ~ .panels .p4,
+#t5:checked ~ .panels .p5{display:block}
+
+.phase{margin-bottom:1.75rem}
+.ph{display:flex;align-items:center;gap:8px;margin-bottom:.75rem}
+.ph-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.ph-lbl{font-size:11px;font-weight:700;color:var(--txt2);text-transform:uppercase;letter-spacing:.06em}
+.ph-venue{font-size:10px;color:var(--txt3);margin-left:auto;text-align:right;max-width:170px;line-height:1.35}
+
+.ev-cb{display:none}
+.ev-row{display:flex;gap:8px;margin-bottom:6px;align-items:flex-start}
+.ev-time{font-size:10px;color:var(--txt3);min-width:44px;padding-top:13px;text-align:right;flex-shrink:0;font-variant-numeric:tabular-nums}
+.ev-card{flex:1;background:var(--bg);border:1px solid var(--border);border-radius:var(--r);overflow:hidden}
+.ev-lbl{display:flex;padding:9px 10px;cursor:pointer;gap:6px;align-items:flex-start}
+.ev-body{flex:1}
+.ev-title{font-size:13px;font-weight:500;line-height:1.35;color:var(--txt)}
+.ev-detail{font-size:11px;color:var(--txt2);margin-top:4px;line-height:1.55}
+.ev-tags{display:flex;flex-wrap:wrap;gap:3px;margin-top:5px}
+.tag{font-size:10px;padding:2px 7px;border-radius:10px;font-weight:500}
+.tp{background:var(--teal-bg);color:var(--teal-txt)}
+.tt{background:var(--blue-bg);color:var(--blue-txt)}
+.ta{background:var(--red-bg);color:var(--red-txt)}
+.sup-row{display:flex;flex-wrap:wrap;gap:3px;margin-top:6px;padding-top:6px;border-top:1px solid var(--border)}
+.sc{font-size:10px;padding:2px 7px;border-radius:10px;background:var(--amber-bg);color:var(--amber-txt);font-weight:500}
+.ev-chk{width:22px;height:22px;border-radius:5px;border:1.5px solid var(--border2);flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;background:var(--bg)}
+.ev-chk::after{content:'';display:none;width:12px;height:12px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E") center/contain no-repeat}
+.ev-cb:checked + .ev-row .ev-chk{background:var(--green);border-color:var(--green)}
+.ev-cb:checked + .ev-row .ev-chk::after{display:block}
+.ev-cb:checked + .ev-row .ev-card .ev-title{text-decoration:line-through;opacity:.5}
+.ev-cb:checked + .ev-row .ev-card{opacity:.5}
+
+.pc{background:var(--bg);border:1px solid var(--border);border-radius:var(--rl);padding:1rem 1.25rem;margin-bottom:10px}
+.ph2{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.av{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0}
+.pn{font-size:14px;font-weight:700}
+.pr{font-size:11px;color:var(--txt2)}
+.tl{border-top:1px solid var(--border);padding-top:8px}
+.ti{display:flex;align-items:flex-start;gap:8px;padding:5px 0;font-size:12px;color:var(--txt2);border-bottom:1px solid var(--border);line-height:1.45}
+.ti:last-child{border-bottom:none}
+.tt2{font-size:10px;color:var(--txt3);font-weight:600;min-width:38px;margin-top:1px;flex-shrink:0}
+
+.tc{background:var(--bg);border:1px solid var(--border);border-radius:var(--rl);padding:1rem 1.25rem;margin-bottom:10px}
+.th{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.ti2{width:34px;height:34px;border-radius:var(--r);background:var(--blue-bg);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:18px}
+.tn{font-size:13px;font-weight:700}
+.ts{font-size:11px;color:var(--txt3)}
+.leg{margin-bottom:10px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+.leg:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.lt{font-size:10px;color:var(--txt3);font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-bottom:3px}
+.lr{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--txt2);margin:3px 0}
+.la{color:var(--txt3)}
+.lp{font-size:11px;color:var(--txt3)}
+
+.cl-section{margin-bottom:1.25rem}
+.cg-title{font-size:11px;font-weight:700;color:var(--txt2);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.cg-badge{font-size:10px;font-weight:400;background:var(--bg3);color:var(--txt3);padding:2px 7px;border-radius:8px}
+.cl-cb{display:none}
+.cl-item{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);cursor:pointer}
+.cl-item:last-child{border-bottom:none}
+.cl-box{width:19px;height:19px;border-radius:4px;border:1.5px solid var(--border2);flex-shrink:0;margin-top:1px;background:var(--bg);position:relative}
+.cl-box::after{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E") center/60% no-repeat;display:none}
+.cl-cb:checked + .cl-item .cl-box{background:var(--green);border-color:var(--green)}
+.cl-cb:checked + .cl-item .cl-box::after{display:block}
+.cl-cb:checked + .cl-item .cl-lbl{text-decoration:line-through;color:var(--txt3)}
+.cl-lbl{font-size:13px;flex:1;line-height:1.45}
+
+.sp-cat{margin-bottom:1.5rem}
+.sp-hdr{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.sp-icon{width:32px;height:32px;border-radius:var(--r);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:17px}
+.sp-title{font-size:13px;font-weight:700}
+.sp-sub{font-size:11px;color:var(--txt3)}
+.sp-cb{display:none}
+.sp-item{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);cursor:pointer}
+.sp-item:last-child{border-bottom:none}
+.sp-box{width:19px;height:19px;border-radius:4px;border:1.5px solid var(--border2);flex-shrink:0;background:var(--bg);position:relative}
+.sp-box::after{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E") center/60% no-repeat;display:none}
+.sp-cb:checked + .sp-item .sp-box{background:var(--green);border-color:var(--green)}
+.sp-cb:checked + .sp-item .sp-box::after{display:block}
+.sp-cb:checked + .sp-item .sp-name{text-decoration:line-through;color:var(--txt3)}
+.sp-name{font-size:13px;flex:1}
+.sp-when{font-size:10px;color:var(--txt3);flex-shrink:0}
+
+#sp-all:checked ~ .app .sp-lbl-all,
+#sp-xr:checked ~ .app .sp-lbl-sp-xr,
+#sp-hu:checked ~ .app .sp-lbl-sp-hu,
+#sp-ma:checked ~ .app .sp-lbl-sp-ma,
+#sp-ag:checked ~ .app .sp-lbl-sp-ag,
+#sp-ch:checked ~ .app .sp-lbl-sp-ch,
+#sp-je:checked ~ .app .sp-lbl-sp-je,
+#sp-le:checked ~ .app .sp-lbl-sp-le,
+#sp-sb:checked ~ .app .sp-lbl-sp-sb{
+  background:var(--txt);color:var(--bg);border-color:var(--txt);font-weight:700
+}
+
+
+.rd-radio{display:none}
+.rd-filter-lbl{font-size:11px;padding:4px 10px;border-radius:20px;border:1.5px solid var(--border2);background:var(--bg);color:var(--txt2);font-weight:500;cursor:pointer;display:inline-block;margin:2px}
+#rd-leung:checked ~ .app .tab-panel.p1 .ev-row{display:none}
+#rd-leung:checked ~ .app .tab-panel.p1 .ev-cb{display:none}
+#rd-leung:checked ~ .app .tab-panel.p1 .ev-row.ow-leung{display:flex}
+#rd-leung:checked ~ .app .tab-panel.p1 .ev-cb.ow-leung{display:inline-block}
+#rd-jeremy:checked ~ .app .tab-panel.p1 .ev-row{display:none}
+#rd-jeremy:checked ~ .app .tab-panel.p1 .ev-cb{display:none}
+#rd-jeremy:checked ~ .app .tab-panel.p1 .ev-row.ow-jeremy{display:flex}
+#rd-jeremy:checked ~ .app .tab-panel.p1 .ev-cb.ow-jeremy{display:inline-block}
+#rd-hubert:checked ~ .app .tab-panel.p1 .ev-row{display:none}
+#rd-hubert:checked ~ .app .tab-panel.p1 .ev-cb{display:none}
+#rd-hubert:checked ~ .app .tab-panel.p1 .ev-row.ow-hubert{display:flex}
+#rd-hubert:checked ~ .app .tab-panel.p1 .ev-cb.ow-hubert{display:inline-block}
+#rd-cherrie:checked ~ .app .tab-panel.p1 .ev-row{display:none}
+#rd-cherrie:checked ~ .app .tab-panel.p1 .ev-cb{display:none}
+#rd-cherrie:checked ~ .app .tab-panel.p1 .ev-row.ow-cherrie{display:flex}
+#rd-cherrie:checked ~ .app .tab-panel.p1 .ev-cb.ow-cherrie{display:inline-block}
+#rd-agnes:checked ~ .app .tab-panel.p1 .ev-row{display:none}
+#rd-agnes:checked ~ .app .tab-panel.p1 .ev-cb{display:none}
+#rd-agnes:checked ~ .app .tab-panel.p1 .ev-row.ow-agnes{display:flex}
+#rd-agnes:checked ~ .app .tab-panel.p1 .ev-cb.ow-agnes{display:inline-block}
+#rd-mandy:checked ~ .app .tab-panel.p1 .ev-row{display:none}
+#rd-mandy:checked ~ .app .tab-panel.p1 .ev-cb{display:none}
+#rd-mandy:checked ~ .app .tab-panel.p1 .ev-row.ow-mandy{display:flex}
+#rd-mandy:checked ~ .app .tab-panel.p1 .ev-cb.ow-mandy{display:inline-block}
+#rd-eman:checked ~ .app .tab-panel.p1 .ev-row{display:none}
+#rd-eman:checked ~ .app .tab-panel.p1 .ev-cb{display:none}
+#rd-eman:checked ~ .app .tab-panel.p1 .ev-row.ow-eman{display:flex}
+#rd-eman:checked ~ .app .tab-panel.p1 .ev-cb.ow-eman{display:inline-block}
+#rd-nam:checked ~ .app .tab-panel.p1 .ev-row{display:none}
+#rd-nam:checked ~ .app .tab-panel.p1 .ev-cb{display:none}
+#rd-nam:checked ~ .app .tab-panel.p1 .ev-row.ow-nam{display:flex}
+#rd-nam:checked ~ .app .tab-panel.p1 .ev-cb.ow-nam{display:inline-block}
+#rd-rosedi:checked ~ .app .tab-panel.p1 .ev-row{display:none}
+#rd-rosedi:checked ~ .app .tab-panel.p1 .ev-cb{display:none}
+#rd-rosedi:checked ~ .app .tab-panel.p1 .ev-row.ow-rosedi{display:flex}
+#rd-rosedi:checked ~ .app .tab-panel.p1 .ev-cb.ow-rosedi{display:inline-block}
+#rd-tuan:checked ~ .app .tab-panel.p1 .ev-row{display:none}
+#rd-tuan:checked ~ .app .tab-panel.p1 .ev-cb{display:none}
+#rd-tuan:checked ~ .app .tab-panel.p1 .ev-row.ow-tuan{display:flex}
+#rd-tuan:checked ~ .app .tab-panel.p1 .ev-cb.ow-tuan{display:inline-block}
+#rd-all:checked ~ .app .rd-lbl-all,
+#rd-leung:checked ~ .app .rd-lbl-leung,
+#rd-jeremy:checked ~ .app .rd-lbl-jeremy,
+#rd-hubert:checked ~ .app .rd-lbl-hubert,
+#rd-cherrie:checked ~ .app .rd-lbl-cherrie,
+#rd-agnes:checked ~ .app .rd-lbl-agnes,
+#rd-mandy:checked ~ .app .rd-lbl-mandy,
+#rd-eman:checked ~ .app .rd-lbl-eman,
+#rd-nam:checked ~ .app .rd-lbl-nam,
+#rd-rosedi:checked ~ .app .rd-lbl-rosedi,
+#rd-tuan:checked ~ .app .rd-lbl-tuan{background:var(--txt);color:var(--bg);border-color:var(--txt);font-weight:700}
+</style>
+</head>
+<body>
+<input type="radio" name="sp-filter" id="sp-all" class="rd-radio" checked>
+<input type="radio" name="sp-filter" id="sp-xr" class="rd-radio">
+<input type="radio" name="sp-filter" id="sp-hu" class="rd-radio">
+<input type="radio" name="sp-filter" id="sp-ma" class="rd-radio">
+<input type="radio" name="sp-filter" id="sp-ag" class="rd-radio">
+<input type="radio" name="sp-filter" id="sp-ch" class="rd-radio">
+<input type="radio" name="sp-filter" id="sp-je" class="rd-radio">
+<input type="radio" name="sp-filter" id="sp-le" class="rd-radio">
+<input type="radio" name="sp-filter" id="sp-sb" class="rd-radio">
+
+<input type="radio" name="rd-filter" id="rd-all" class="rd-radio" checked>
+<input type="radio" name="rd-filter" id="rd-leung" class="rd-radio">
+<input type="radio" name="rd-filter" id="rd-jeremy" class="rd-radio">
+<input type="radio" name="rd-filter" id="rd-hubert" class="rd-radio">
+<input type="radio" name="rd-filter" id="rd-cherrie" class="rd-radio">
+<input type="radio" name="rd-filter" id="rd-agnes" class="rd-radio">
+<input type="radio" name="rd-filter" id="rd-mandy" class="rd-radio">
+<input type="radio" name="rd-filter" id="rd-eman" class="rd-radio">
+<input type="radio" name="rd-filter" id="rd-nam" class="rd-radio">
+<input type="radio" name="rd-filter" id="rd-rosedi" class="rd-radio">
+<input type="radio" name="rd-filter" id="rd-tuan" class="rd-radio">
+<div class="app">
+
+<input class="tab-radio" type="radio" name="tabs" id="t1" checked>
+<input class="tab-radio" type="radio" name="tabs" id="t2">
+<input class="tab-radio" type="radio" name="tabs" id="t3">
+<input class="tab-radio" type="radio" name="tabs" id="t4">
+<input class="tab-radio" type="radio" name="tabs" id="t5">
+<input class="tab-radio" type="radio" name="tabs" id="t6">
+
+<div class="hdr">
+  <div class="hdr-title">Ivan & Rose 婚禮 💍</div>
+  <div class="hdr-sub">當日統籌 · Wedding Day Coordinator</div>
+  <div class="hdr-date">2026年7月5日 (星期日)</div>
+</div>
+
+<div class="tabs-nav">
+  <label class="tab-lbl lbl1" for="t1"><span>🕐</span>時間軸</label>
+  <label class="tab-lbl lbl2" for="t2"><span>👥</span>分工</label>
+  <label class="tab-lbl lbl3" for="t3"><span>🚌</span>交通</label>
+  <label class="tab-lbl lbl4" for="t4"><span>✅</span>清單</label>
+  <label class="tab-lbl lbl5" for="t5"><span>🎒</span>物資</label>
+  <label class="tab-lbl lbl6" for="t6"><span>📞</span>聯絡</label>
+</div>
+
+<div class="panels">
+
+<!-- ===== P1 TIMELINE ===== -->
+<div class="tab-panel p1">
+
+  <div id="rd-filter-wrap" style="margin-bottom:14px">
+    <div style="font-size:11px;color:var(--txt2);font-weight:600;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:8px">篩選負責人</div>
+    <div style="display:flex;flex-wrap:wrap;gap:4px">
+      <label class="rd-filter-lbl rd-lbl-all" for="rd-all">全部</label>
+      <label class="rd-filter-lbl rd-lbl-leung" for="rd-leung">Leung</label>
+      <label class="rd-filter-lbl rd-lbl-jeremy" for="rd-jeremy">Jeremy</label>
+      <label class="rd-filter-lbl rd-lbl-hubert" for="rd-hubert">Hubert</label>
+      <label class="rd-filter-lbl rd-lbl-cherrie" for="rd-cherrie">Cherrie</label>
+      <label class="rd-filter-lbl rd-lbl-agnes" for="rd-agnes">Agnes</label>
+      <label class="rd-filter-lbl rd-lbl-mandy" for="rd-mandy">Mandy</label>
+      <label class="rd-filter-lbl rd-lbl-eman" for="rd-eman">Eman</label>
+      <label class="rd-filter-lbl rd-lbl-nam" for="rd-nam">南</label>
+      <label class="rd-filter-lbl rd-lbl-rosedi" for="rd-rosedi">Rose弟</label>
+      <label class="rd-filter-lbl rd-lbl-tuan" for="rd-tuan">兄弟團</label>
+    </div>
+  </div>
+
+  <!-- PHASE 1: 化妝換妝 -->
+  <div class="phase">
+    <div class="ph"><div class="ph-dot" style="background:#D4537E"></div><span class="ph-lbl">化妝換妝</span><span class="ph-venue">任合興工業大廈 11C<br>葵涌葵榮路 40–44號</span></div>
+
+    <input class="ev-cb" type="checkbox" id="e1">
+    <div class="ev-row"><div class="ev-time">10:00</div><div class="ev-card"><label class="ev-lbl" for="e1"><div class="ev-body"><div class="ev-title">新娘、新郎、媽媽出發</div><div class="ev-detail">從深井家出發前往葵涌 Studio</div><div class="ev-tags"><span class="tag tt">深井出發</span></div></div><div class="ev-chk"></div></label></div></div>
+
+    <input class="ev-cb" type="checkbox" id="e2">
+    <div class="ev-row"><div class="ev-time">10:00</div><div class="ev-card"><label class="ev-lbl" for="e2"><div class="ev-body"><div class="ev-title">新娘 / 姊妹 / 媽媽 / Ivan's妹妹 開始化妝</div></div><div class="ev-chk"></div></label></div></div>
+
+    <input class="ev-cb ow-jeremy" type="checkbox" id="e3">
+    <div class="ev-row ow-jeremy"><div class="ev-time">10:00</div><div class="ev-card"><label class="ev-lbl" for="e3"><div class="ev-body"><div class="ev-title">叫早餐</div><div class="ev-detail">兄弟姊妹輪流吃早餐</div><div class="ev-tags"><span class="tag tp">Jeremy 負責叫</span></div></div><div class="ev-chk"></div></label></div></div>
+
+    <input class="ev-cb ow-jeremy" type="checkbox" id="e4">
+    <div class="ev-row ow-jeremy"><div class="ev-time">10:00</div><div class="ev-card"><label class="ev-lbl" for="e4"><div class="ev-body"><div class="ev-title">Jeremy 幫多比穿裝飾</div><div class="ev-tags"><span class="tag tp">Jeremy</span></div></div><div class="ev-chk"></div></label></div></div>
+
+    <input class="ev-cb ow-tuan" type="checkbox" id="e5">
+    <div class="ev-row ow-tuan"><div class="ev-time">早上</div><div class="ev-card"><label class="ev-lbl" for="e5"><div class="ev-body"><div class="ev-title">兄弟點算物資</div><div class="ev-detail">點齊全部婚禮物資（見物資清單）</div><div class="ev-tags"><span class="tag tp">兄弟團</span></div><div class="sup-row"><span class="sc">禮儀小冊子</span><span class="sc">利是封</span><span class="sc">糖果盆</span><span class="sc">簽名簿</span><span class="sc">公仔</span><span class="sc">多比牌</span><span class="sc">一二布布牌</span><span class="sc">油畫</span><span class="sc">花車裝飾</span><span class="sc">新房裝飾</span><span class="sc">戒指</span><span class="sc">外景道具</span><span class="sc">電腦+USB</span><span class="sc">合照名單</span></div></div><div class="ev-chk"></div></label></div></div>
+
+    <input class="ev-cb ow-hubert" type="checkbox" id="e6">
+    <div class="ev-row ow-hubert"><div class="ev-time">早上</div><div class="ev-card"><label class="ev-lbl" for="e6"><div class="ev-body"><div class="ev-title">派發襟花（早上）</div><div class="ev-detail">男方：新郎、Hubert<br>女方：媽媽</div><div class="ev-tags"><span class="tag tp">Hubert 負責</span></div></div><div class="ev-chk"></div></label></div></div>
+
+    <input class="ev-cb ow-leung" type="checkbox" id="e8">
+    <div class="ev-row ow-leung"><div class="ev-time">10:00</div><div class="ev-card"><label class="ev-lbl" for="e8"><div class="ev-body"><div class="ev-title">聯絡 28VAN 司機，提醒 12:30 到場</div><div class="ev-tags"><span class="tag tp">Leung 負責</span></div></div><div class="ev-chk"></div></label></div></div>
+
+    <input class="ev-cb" type="checkbox" id="e7">
+    <div class="ev-row"><div class="ev-time">11:00</div><div class="ev-card"><label class="ev-lbl" for="e7"><div class="ev-body"><div class="ev-title">攝影師 Dennis & 團隊 到場</div><div class="ev-tags"><span class="tag tp">Dennis 攝影團隊</span></div></div><div class="ev-chk"></div></label></div></div>
+
+    <input class="ev-cb ow-tuan" type="checkbox" id="e8b">
+    <div class="ev-row ow-tuan"><div class="ev-time">~12:30</div><div class="ev-card"><label class="ev-lbl" for="e8b"><div class="ev-body"><div class="ev-title">將物資搬上 28VAN</div><div class="ev-tags"><span class="tag tp">兄弟團</span></div></div><div class="ev-chk"></div></label></div></div>
+
+    <input class="ev-cb ow-hubert ow-rosedi" type="checkbox" id="e9x">
+    <div class="ev-row ow-hubert ow-rosedi"><div class="ev-time">~12:45</div><div class="ev-card"><label class="ev-lbl" for="e9x"><div class="ev-body"><div class="ev-title">化妝完成 → 出發聖堂</div><div class="ev-detail">全體搭 28VAN（西隧）<br>新人、Hubert、媽媽、Rose弟、多比乘私家車 WE1776</div><div class="ev-tags"><span class="tag tt">28VAN · Leung</span><span class="tag tt">私家車 WE1776 · Hubert</span></div></div><div class="ev-chk"></div></label></div></div>
+  </div>
+
+  <!-- PHASE 2: 聖堂證婚 -->
+  <div class="phase">
+    <div class="ph"><div class="ph-dot" style="background:#534AB7"></div><span class="ph-lbl">聖堂證婚</span><span class="ph-venue">聖母無原罪主教座堂<br>堅道16號，半山</span></div>
+
+    <input class="ev-cb ow-leung ow-agnes ow-mandy ow-eman" type="checkbox" id="ec1">
+    <div class="ev-row ow-leung ow-agnes ow-mandy ow-eman"><div class="ev-time">13:30</div><div class="ev-card"><label class="ev-lbl" for="ec1"><div class="ev-body"><div class="ev-title">提早到場準備</div><div class="ev-detail">聖堂門外就位、派禮儀小冊子<br>Mandy + Agnes + Leung + Eman<br><br>⚠️ 沒有劃位，預留家人頭6行<br>⚠️ 第一行中間走廊位置留給證婚人（Rose爸爸 &amp; Ivan弟弟）<br>座位：女家（家人親戚）望向祭台左邊，男家（家人親戚）望向祭台右邊；雙方朋友：左右邊都可<br>如有 Guest 俾利是/禮物，請 mark 低</div><div class="ev-tags"><span class="tag tp">Mandy Agnes Leung Eman</span><span class="tag ta">攝影師不可上祭台</span></div><div class="sup-row"><span class="sc">禮儀小冊子</span></div></div><div class="ev-chk"></div></label></div></div>
+
+    <input class="ev-cb ow-hubert" type="checkbox" id="ec2">
+    <div class="ev-row ow-hubert"><div class="ev-time">13:30</div><div class="ev-card"><label class="ev-lbl" for="ec2"><div class="ev-body"><div class="ev-title">派發襟花（聖堂）</div><div class="ev-detail">男方：爸爸、哥哥、妹妹<br>女方：爸爸、弟弟</div><div class="ev-tags"><span class="tag tp">Hubert</span></div></div><div class="ev-chk"></div></label></div></div>
+
+    <input class="ev-cb ow-agnes" type="checkbox" id="ec3">
+    <div class="ev-row ow-agnes"><div class="ev-time">13:30</div><div class="ev-card"><label class="ev-lbl" for="ec3"><div class="ev-body"><div class="ev-title">花仔花女到場及彩排</div><div class="ev-detail">花仔：然然（3歲）Tel: 9379 3114<br>花女：喬喬（5歲）Tel: 6224 6207<br>Agnes 確認領經員 Elsa (9431 3188) 及讀經員 Thomas (9191 4882) 已到<br>有時間可與兄弟姐妹一起彩排</div><div class="ev-tags"><span class="tag tp">Agnes 確認</span></div></div><div class="ev-chk"></div></label></div></div>
+
+    <input class="ev-cb ow-leung ow-jeremy ow-hubert ow-cherrie ow-agnes ow-mandy ow-eman ow-nam" type="checkbox" id="ec4">
+    <div class="ev-row ow-leung ow-jeremy ow-hubert ow-cherrie ow-agnes ow-mandy ow-eman ow-nam"><div class="ev-time">14:00–14:30</div><div class="ev-card"><label class="ev-lbl" for="ec4"><div class="ev-body"><div class="ev-title">天主教禮儀正式開始</div><div class="ev-detail">由歐陽輝神父主禮，約半小時<br>證婚人：Rose爸爸、Ivan弟弟 Hubert<br><br>March-in 次序（男左女右一pair進入）：<br>1. 花仔 &amp; 花女<br>2. Hubert &amp; Cherrie<br>3. Leung &amp; Mandy<br>4. Eman &amp; Agnes<br>5. 南 &amp; Jeremy<br>6. 新娘爸爸 &amp; 新娘<br>*伴郎伴娘隔5塊地磚慢行，新娘3步停1步<br>*到祭台前鞠躬，向右邊坐低<br><br>禮儀進行中：<br>• Hubert：戒指放在祭台新人位置<br>• Cherrie &amp; Mandy：幫Rose整裙<br>• Jeremy：去門口照顧多比<br><br>禮後：<br>• Leung &amp; 南：佈置酒店花車 ⚠️ 2:30前完成<br>• 邀請親朋到門外拍照（Hubert &amp; 南，最遲 15:15）<br>• 新娘拋花球（Cherrie &amp; Hubert 協助）<br>• 多比不能入聖堂，門口等候。Jeff (61859559)</div><div class="ev-tags"><span class="tag ta">攝影師不可入聖堂</span><span class="tag tp">Hubert Cherrie Mandy Jeremy Leung 南</span></div><div class="sup-row"><span class="sc">戒指</span></div></div><div class="ev-chk"></div></label></div></div>
+
+    <input class="ev-cb ow-leung ow-hubert ow-rosedi ow-tuan" type="checkbox" id="ec5">
+    <div class="ev-row ow-leung ow-hubert ow-rosedi ow-tuan"><div class="ev-time">~15:15</div><div class="ev-card"><label class="ev-lbl" for="ec5"><div class="ev-body"><div class="ev-title">各自出發 M+ / 酒店</div><div class="ev-detail">🌸 新人 → 花車 → M+（Leung 聯絡花車司機）<br>🚗 Hubert / 女友 / 兄弟團 → WE1776 → M+<br>🚌 Rose媽媽、Rose弟、多比、花仔花女及家人 → 28VAN → 朗廷酒店</div><div class="ev-tags"><span class="tag tt">花車 · WE1776 · 28VAN</span></div></div><div class="ev-chk"></div></label></div></div>
+  </div>
+
+  <!-- PHASE 3: 外景拍攝 -->
+  <div class="phase">
+    <div class="ph"><div class="ph-dot" style="background:#0F6E56"></div><span class="ph-lbl">外景拍攝</span><span class="ph-venue">M+ · 西九龍</span></div>
+
+    <input class="ev-cb ow-jeremy ow-agnes" type="checkbox" id="e20">
+    <div class="ev-row ow-jeremy ow-agnes"><div class="ev-time">15:45</div><div class="ev-card"><label class="ev-lbl" for="e20"><div class="ev-body"><div class="ev-title">點算外景道具</div><div class="ev-tags"><span class="tag tp">Jeremy &amp; Agnes</span></div><div class="sup-row"><span class="sc">花球</span><span class="sc">道具牌</span><span class="sc">雨傘</span><span class="sc">小物</span></div></div><div class="ev-chk"></div></label></div></div>
+
+    <input class="ev-cb ow-rosedi" type="checkbox" id="e21">
+    <div class="ev-row ow-rosedi"><div class="ev-time">15:45</div><div class="ev-card"><label class="ev-lbl" for="e21"><div class="ev-body"><div class="ev-title">Rose弟 / 如表姐 / Ivan妹 到酒店辦理</div><div class="ev-detail">取房卡 ×3 間<br>佈置新人房（for 17:50 補敬茶）<br>與酒店聯絡敬茶茶具</div><div class="ev-tags"><span class="tag tp">Rose弟 如表姐 Ivan妹</span></div><div class="sup-row"><span class="sc">新房裝飾</span></div></div><div class="ev-chk"></div></label></div></div>
+
+    <input class="ev-cb ow-rosedi" type="checkbox" id="e21b">
+    <div class="ev-row ow-rosedi"><div class="ev-time">15:30</div><div class="ev-card"><label class="ev-lbl" for="e21b"><div class="ev-body"><div class="ev-title">多比可進入新娘房</div><div class="ev-detail">多比到酒店後可進入新娘房，直至晚宴開始（19:00 Rose弟帶上房）</div></div><div class="ev-chk"></div></label></div></div>
+
+    <input class="ev-cb ow-leung ow-hubert" type="checkbox" id="e22">
+    <div class="ev-row ow-leung ow-hubert"><div class="ev-time">16:50</div><div class="ev-card"><label class="ev-lbl" for="e22"><div class="ev-body"><div class="ev-title">⚠️ 外景完成 — 最遲 16:50 離開</div><div class="ev-detail">全人搭 28VAN 回酒店（Leung 聯絡）<br>新人搭酒店花車，Hubert 揸 WE1776</div><div class="ev-tags"><span class="tag ta">16:50 必須完成</span><span class="tag tt">28VAN · 花車 · WE1776</span></div><div class="sup-row"><span class="sc">確認所有外景道具帶走</span></div></div><div class="ev-chk"></div></label></div></div>
+  </div>
+
+  <!-- PHASE 4: 婚宴 -->
+  <div class="phase">
+    <div class="ph"><div class="ph-dot" style="background:#BA7517"></div><span class="ph-lbl">婚宴</span><span class="ph-venue">朗廷酒店 · 尖沙咀北京道8號</span></div>
+
+    <input class="ev-cb" type="checkbox" id="e23">
+    <div class="ev-row"><div class="ev-time">15:30</div><div class="ev-card"><label class="ev-lbl" for="e23"><div class="ev-body"><div class="ev-title">佈置公司到達場地</div><div class="ev-detail">幫忙佈置會場 backdrop &amp; reception table</div></div><div class="ev-chk"></div></label></div></div>
+
+    <input class="ev-cb ow-rosedi" type="checkbox" id="e24">
+    <div class="ev-row ow-rosedi"><div class="ev-time">16:30</div><div class="ev-card"><label class="ev-lbl" for="e24"><div class="ev-body"><div class="ev-title">MC 到場 — 試音樂 / 影片</div><div class="ev-detail">交電腦 &amp; USB 給 MC<br>同場地同事溝通流程</div><div class="ev-tags"><span class="tag tp">Rose弟 交電腦+USB</span></div><div class="sup-row"><span class="sc">電腦</span><span class="sc">USB</span></div></div><div class="ev-chk"></div></label></div></div>
+
+    <input class="ev-cb" type="checkbox" id="e25">
+    <div class="ev-row"><div class="ev-time">17:15</div><div class="ev-card"><label class="ev-lbl" for="e25"><div class="ev-body"><div class="ev-title">新人及兄弟姊妹到達朗廷</div></div><div class="ev-chk"></div></label></div></div>
+
+    <input class="ev-cb" type="checkbox" id="e25b">
+    <div class="ev-row"><div class="ev-time">17:15</div><div class="ev-card"><label class="ev-lbl" for="e25b"><div class="ev-body"><div class="ev-title">新娘補妝換迎賓裙</div><div class="ev-detail">約15分鐘</div></div><div class="ev-chk"></div></label></div></div>
+
+    <input class="ev-cb ow-mandy" type="checkbox" id="e29">
+    <div class="ev-row ow-mandy"><div class="ev-time">17:15</div><div class="ev-card"><label class="ev-lbl" for="e29"><div class="ev-body"><div class="ev-title">俾利是酒店經理（有其他職員見證）</div><div class="ev-tags"><span class="tag tp">Mandy</span></div></div><div class="ev-chk"></div></label></div></div>
+
+    <input class="ev-cb ow-leung ow-agnes ow-eman ow-nam" type="checkbox" id="e26">
+    <div class="ev-row ow-leung ow-agnes ow-eman ow-nam"><div class="ev-time">17:15</div><div class="ev-card"><label class="ev-lbl" for="e26"><div class="ev-body"><div class="ev-title">Set up Photo Gallery &amp; Reception Table</div><div class="ev-detail">Photo Gallery：Leung, Eman &amp; 南<br>Reception table 物資：兄弟姊妹<br>酒店負責擺回禮，Agnes 幫忙檢查每個位</div><div class="ev-tags"><span class="tag tp">Leung Eman 南 兄弟姊妹</span></div><div class="sup-row"><span class="sc">油畫</span><span class="sc">利是封</span><span class="sc">糖果盆</span><span class="sc">簽名簿</span><span class="sc">公仔</span><span class="sc">多比牌</span><span class="sc">一二布布牌</span></div></div><div class="ev-chk"></div></label></div></div>
+
+    <input class="ev-cb ow-leung" type="checkbox" id="e27">
+    <div class="ev-row ow-leung"><div class="ev-time">17:30</div><div class="ev-card"><label class="ev-lbl" for="e27"><div class="ev-body"><div class="ev-title">Photo Booth 到達</div><div class="ev-detail">聯絡工作人員 Tel: 54022000<br>服務時間：6:15–8:15PM</div><div class="ev-tags"><span class="tag tp">Leung 聯絡</span></div></div><div class="ev-chk"></div></label></div></div>
+
+    <input class="ev-cb ow-jeremy ow-hubert ow-cherrie ow-agnes ow-mandy" type="checkbox" id="e28">
+    <div class="ev-row ow-jeremy ow-hubert ow-cherrie ow-agnes ow-mandy"><div class="ev-time">17:30</div><div class="ev-card"><label class="ev-lbl" for="e28"><div class="ev-body"><div class="ev-title">上房補敬茶（酒店茶具，除紙杯）</div><div class="ev-detail">Mandy：遞茶<br>Cherrie：收人情 / 金器，拍早拍晚播<br>Hubert：收人情 / 金器<br>MC 安排講金句</div><div class="ev-tags"><span class="tag tp">Cherrie Mandy Agnes Jeremy Hubert</span></div></div><div class="ev-chk"></div></label></div></div>
+
+    <input class="ev-cb ow-leung ow-jeremy ow-hubert ow-cherrie ow-agnes ow-rosedi" type="checkbox" id="e30">
+    <div class="ev-row ow-leung ow-jeremy ow-hubert ow-cherrie ow-agnes ow-rosedi"><div class="ev-time">18:15</div><div class="ev-card"><label class="ev-lbl" for="e30"><div class="ev-body"><div class="ev-title">Reception 開始招呼來賓</div><div class="ev-detail">坐 Reception 收利是人情金器：<br>男家：Hubert / 女家：Cherrie、Rose弟<br>與 MC 同場地負責人溝通：Leung &amp; Jeremy<br>Agnes 幫忙檢查每個位的回禮禮物</div><div class="ev-tags"><span class="tag tp">兄弟姐妹大家互補位</span></div></div><div class="ev-chk"></div></label></div></div>
+
+    <input class="ev-cb" type="checkbox" id="e31">
+    <div class="ev-row"><div class="ev-time">18:30</div><div class="ev-card"><label class="ev-lbl" for="e31"><div class="ev-body"><div class="ev-title">進場綵排 &amp; 場地準備</div><div class="ev-detail">MC 協助花仔花女、兄弟姐妹團進場綵排（Ivan 在場）<br>切場地蛋糕（邀請兄弟姐妹）<br>新人與兄弟姐妹玩 Photo Booth</div><div class="ev-tags"><span class="tag tp">兄弟姐妹 Ivan</span></div></div><div class="ev-chk"></div></label></div></div>
+
+    <input class="ev-cb ow-jeremy" type="checkbox" id="e32">
+    <div class="ev-row ow-jeremy"><div class="ev-time">~18:30</div><div class="ev-card"><label class="ev-lbl" for="e32"><div class="ev-body"><div class="ev-title">叫 Crew Meal（Foodpanda）</div><div class="ev-detail">MC、化妝師 ×2、攝影師 ×3 = 共6份</div><div class="ev-tags"><span class="tag tp">Jeremy 負責</span></div></div><div class="ev-chk"></div></label></div></div>
+
+    <input class="ev-cb" type="checkbox" id="e33">
+    <div class="ev-row"><div class="ev-time">18:55</div><div class="ev-card"><label class="ev-lbl" for="e33"><div class="ev-body"><div class="ev-title">Rose 換進場婚紗</div></div><div class="ev-chk"></div></label></div></div>
+
+    <input class="ev-cb ow-mandy ow-rosedi" type="checkbox" id="e34">
+    <div class="ev-row ow-mandy ow-rosedi"><div class="ev-time">19:00</div><div class="ev-card"><label class="ev-lbl" for="e34"><div class="ev-body"><div class="ev-title">帶多比上房 + 餵晚餐 + 哄哄</div><div class="ev-detail">Mandy 保管新娘房鎖匙</div><div class="ev-tags"><span class="tag tp">Rose弟</span><span class="tag tp">Mandy 保管鎖匙</span></div></div><div class="ev-chk"></div></label></div></div>
+
+    <input class="ev-cb ow-leung ow-jeremy" type="checkbox" id="e35">
+    <div class="ev-row ow-leung ow-jeremy"><div class="ev-time">19:30</div><div class="ev-card"><label class="ev-lbl" for="e35"><div class="ev-body"><div class="ev-title">MC 邀請 Guests 入席就座</div><div class="ev-detail">通知來賓 Photo Booth 截止時間 8:15<br>酒店有一位職員負責AV，找多兩位幫忙，期間有空檔吃晚餐</div><div class="ev-tags"><span class="tag tp">Leung Jeremy 協助AV</span></div></div><div class="ev-chk"></div></label></div></div>
+
+    <input class="ev-cb" type="checkbox" id="e36">
+    <div class="ev-row"><div class="ev-time">19:45</div><div class="ev-card"><label class="ev-lbl" for="e36"><div class="ev-body"><div class="ev-title">MC Opening &amp; 入場程序</div><div class="ev-detail">→ 播成長片<br>→ 花仔花女、兄弟姐妹在場內側邊，新人進場（電話燈）<br>→ 新娘進場企左邊，Arch 前企右邊，慢步便可<br>→ 切餅 → 合巹交杯 → 祝酒 → Kiss → 致詞（新郎先）→ 上菜</div></div><div class="ev-chk"></div></label></div></div>
+
+    <input class="ev-cb" type="checkbox" id="e37">
+    <div class="ev-row"><div class="ev-time">20:15</div><div class="ev-card"><label class="ev-lbl" for="e37"><div class="ev-body"><div class="ev-title">開始用餐</div></div><div class="ev-chk"></div></label></div></div>
+
+    <input class="ev-cb" type="checkbox" id="e38">
+    <div class="ev-row"><div class="ev-time">20:30</div><div class="ev-card"><label class="ev-lbl" for="e38"><div class="ev-body"><div class="ev-title">合照時間（大 Group 為主）</div><div class="ev-detail">請準備合照名單</div><div class="sup-row"><span class="sc">合照名單</span></div></div><div class="ev-chk"></div></label></div></div>
+
+    <input class="ev-cb ow-jeremy ow-cherrie ow-agnes ow-mandy" type="checkbox" id="e39">
+    <div class="ev-row ow-jeremy ow-cherrie ow-agnes ow-mandy"><div class="ev-time">21:00</div><div class="ev-card"><label class="ev-lbl" for="e39"><div class="ev-body"><div class="ev-title">新娘換敬酒裙</div><div class="ev-detail">安排 2–3 位姐妹幫手戴金器<br>Cherrie 帶零食入新娘房給新娘食</div><div class="ev-tags"><span class="tag tp">Cherrie Mandy Agnes Jeremy</span></div><div class="sup-row"><span class="sc">金器</span></div></div><div class="ev-chk"></div></label></div></div>
+
+    <input class="ev-cb" type="checkbox" id="e40">
+    <div class="ev-row"><div class="ev-time">21:30</div><div class="ev-card"><label class="ev-lbl" for="e40"><div class="ev-body"><div class="ev-title">換好敬酒晚裝後</div><div class="ev-detail">→ 補奉茶（如有）<br>→ 睇早拍晚播（TBC 現場視乎剪好時間）<br>→ 敬酒（每圍敬），兄弟姐妹 &amp; 家人一齊參與</div><div class="ev-tags"><span class="tag tp">兄弟姐妹團</span></div></div><div class="ev-chk"></div></label></div></div>
+
+    <input class="ev-cb" type="checkbox" id="e41">
+    <div class="ev-row"><div class="ev-time">22:00</div><div class="ev-card"><label class="ev-lbl" for="e41"><div class="ev-body"><div class="ev-title">同來賓合照（自由合照時間）</div><div class="ev-detail">合照後如有時間去朋友 / 親戚座位 Social</div></div><div class="ev-chk"></div></label></div></div>
+
+    <input class="ev-cb" type="checkbox" id="e42">
+    <div class="ev-row"><div class="ev-time">22:15</div><div class="ev-card"><label class="ev-lbl" for="e42"><div class="ev-body"><div class="ev-title">開始送客</div><div class="ev-tags"><span class="tag tp">屋企人 &amp; 兄弟姐妹團</span></div></div><div class="ev-chk"></div></label></div></div>
+
+    <input class="ev-cb ow-cherrie ow-rosedi" type="checkbox" id="e43">
+    <div class="ev-row ow-cherrie ow-rosedi"><div class="ev-time">22:30</div><div class="ev-card"><label class="ev-lbl" for="e43"><div class="ev-body"><div class="ev-title">清場及交場</div><div class="ev-detail">找尾數：酒店、Photo Booth、佈置公司、MC</div><div class="ev-tags"><span class="tag tp">Cherrie &amp; Rose弟</span><span class="tag ta">最遲 23:30 交場</span></div></div><div class="ev-chk"></div></label></div></div>
+  </div>
+
+</div>
+
+<div class="tab-panel p2">
+  <div class="pc"><div class="ph2"><div class="av" style="background:var(--blue-bg);color:var(--blue-txt)">Leung</div><div><div class="pn">Leung</div><div class="pr">交通統籌 / Photo Gallery / AV</div></div></div><div class="tl">
+    <div class="ti"><span class="tt2">10:00</span>🚌 聯絡 28VAN 司機，提醒 12:30 到場</div>
+    
+    <div class="ti"><span class="tt2">13:30</span>📋 聖堂門外派發禮儀小冊子</div>
+    <div class="ti"><span class="tt2">禮後</span>🚗 佈置酒店花車（與南，2:30前完成）</div>
+    <div class="ti"><span class="tt2">~15:15</span>💐 聯絡花車司機：聖堂 → M+</div>
+    <div class="ti"><span class="tt2">16:50</span>🚌 聯絡 28VAN：M+ → 酒店</div>
+    <div class="ti"><span class="tt2">17:15</span>🖼️ Set up Photo Gallery（與Eman & 南）</div>
+    <div class="ti"><span class="tt2">17:30</span>📞 聯絡 Photo Booth 工作人員 Tel: 54022000</div>
+    <div class="ti"><span class="tt2">18:15</span>🎤 與 MC 及場地負責人溝通（與Jeremy）</div>
+    <div class="ti"><span class="tt2">19:15–19:30</span>📺 協助AV（期間有空檔吃晚餐）</div>
+  </div></div>
+
+  <div class="pc"><div class="ph2"><div class="av" style="background:var(--amber-bg);color:var(--amber-txt)">Jeremy</div><div><div class="pn">Jeremy</div><div class="pr">多比攝影 / MC打點 / 道具 / Crew meal</div></div></div><div class="tl">
+    <div class="ti"><span class="tt2">10:00</span>🍳 叫早餐（兄弟姊妹輪流用）</div><div class="ti"><span class="tt2">10:00</span>📷 幫多比穿裝飾</div>
+    <div class="ti"><span class="tt2">13:30</span>⚠️ 聖堂門口照顧多比（不可入內）</div>
+    <div class="ti"><span class="tt2">15:45</span>📦 點算外景道具（與Agnes）</div>
+    <div class="ti"><span class="tt2">17:30</span>☕ 上房幫手準備敬茶</div>
+    <div class="ti"><span class="tt2">18:15</span>🎤 與 MC 及場地負責人溝通（與Leung）</div>
+    <div class="ti"><span class="tt2">~18:30</span>🍱 叫 Foodpanda Crew meal（MC、化妝師×2、攝影師×3 = 6份）</div>
+    <div class="ti"><span class="tt2">19:15–19:30</span>📺 協助AV（期間有空檔吃晚餐）</div>
+  </div></div>
+
+  <div class="pc"><div class="ph2"><div class="av" style="background:var(--purple-bg);color:var(--purple-txt)">Hubert</div><div><div class="pn">Hubert</div><div class="pr">私家車 / 證婚人 / 保管文件 / 收利是</div></div></div><div class="tl">
+    <div class="ti"><span class="tt2">早上</span>🌸 派發襟花（男方：新郎、Hubert）</div>
+    <div class="ti"><span class="tt2">~12:45</span>🚗 駕 WE1776：新人、媽媽、Rose弟、多比 → 聖堂</div>
+    <div class="ti"><span class="tt2">13:30</span>🌸 派發襟花（男方：爸爸、哥哥、妹妹）</div>
+    <div class="ti"><span class="tt2">14:00</span>🛡️ 擔任證婚人，戒指放祭台新人位置</div>
+    <div class="ti"><span class="tt2">禮後</span>📄 保管：戒指、新人身份證、結婚證書</div>
+    <div class="ti"><span class="tt2">禮後</span>🚗 駕 WE1776：兄弟團 → M+（拍外景）</div>
+    <div class="ti"><span class="tt2">禮後</span>🌸 協助新娘拋花球（與Cherrie）</div>
+    <div class="ti"><span class="tt2">禮後</span>📸 門外拍照（按名單，最遲15:15）（與南）</div>
+    <div class="ti"><span class="tt2">17:30</span>💰 收人情 / 金器（男家）</div>
+    <div class="ti"><span class="tt2">18:15</span>💰 坐Reception 收利是人情金器（男家）</div>
+  </div></div>
+
+  <div class="pc"><div class="ph2"><div class="av" style="background:var(--teal-bg);color:var(--teal-txt)">Cherrie</div><div><div class="pn">Cherrie</div><div class="pr">金器 / 花球 / 新娘照顧</div></div></div><div class="tl">
+    <div class="ti"><span class="tt2">14:00</span>👗 禮儀中幫Rose整裙（與Mandy）</div>
+    <div class="ti"><span class="tt2">禮後</span>🌸 協助新娘拋花球（與Hubert）</div>
+    <div class="ti"><span class="tt2">17:30</span>💰 收人情 / 金器（女家）＋拍早拍晚播</div>
+    <div class="ti"><span class="tt2">18:15</span>💰 坐Reception 收利是人情金器（女家）</div>
+    <div class="ti"><span class="tt2">21:00</span>🍱 帶零食入新娘房給新娘食</div>
+    <div class="ti"><span class="tt2">22:30</span>💳 找尾數（與Rose弟）</div>
+  </div></div>
+
+  <div class="pc"><div class="ph2"><div class="av" style="background:var(--pink-bg);color:var(--pink-txt)">Agnes</div><div><div class="pn">Agnes</div><div class="pr">禮儀確認 / 道具 / 回禮檢查</div></div></div><div class="tl">
+    <div class="ti"><span class="tt2">13:30</span>✅ 確認領經員Elsa & 讀經員Thomas已到（聯絡號碼在清單）</div>
+    <div class="ti"><span class="tt2">13:30</span>📋 聖堂門外派發禮儀小冊子</div>
+    <div class="ti"><span class="tt2">15:45</span>📦 點算外景道具（與Jeremy）</div>
+    <div class="ti"><span class="tt2">17:15</span>🎁 檢查酒店每個位的回禮禮物</div>
+    <div class="ti"><span class="tt2">17:30</span>☕ 上房幫手準備敬茶</div>
+    <div class="ti"><span class="tt2">21:00</span>💎 幫新娘戴金器</div>
+  </div></div>
+
+  <div class="pc"><div class="ph2"><div class="av" style="background:var(--pink-bg);color:var(--pink-txt)">Mandy</div><div><div class="pn">Mandy</div><div class="pr">禮儀 / 敬茶 / 鎖匙</div></div></div><div class="tl">
+    <div class="ti"><span class="tt2">13:30</span>📋 聖堂門外派發禮儀小冊子</div>
+    <div class="ti"><span class="tt2">13:30</span>🌸 保管花球（新娘拿住 & 扔）</div>
+    <div class="ti"><span class="tt2">14:00</span>👗 禮儀中幫Rose整裙（與Cherrie）</div>
+    <div class="ti"><span class="tt2">14:00</span>🌸 禮後保管花球</div>
+    <div class="ti"><span class="tt2">17:30</span>☕ 遞茶（敬茶環節）</div>
+    <div class="ti"><span class="tt2">17:30</span>💵 俾利是酒店經理（有其他職員見證）</div>
+    <div class="ti"><span class="tt2">19:00</span>🔑 保管新娘房鎖匙</div>
+    <div class="ti"><span class="tt2">21:00</span>💎 幫新娘戴金器</div>
+  </div></div>
+
+  <div class="pc"><div class="ph2"><div class="av" style="background:var(--purple-bg);color:var(--purple-txt)">Eman</div><div><div class="pn">Eman</div><div class="pr">禮儀 / 物資 / Photo Gallery</div></div></div><div class="tl">
+    <div class="ti"><span class="tt2">12:30–12:45</span>📦 將物資搬上 28VAN</div>
+    <div class="ti"><span class="tt2">13:30</span>📋 聖堂門外派發禮儀小冊子</div>
+    <div class="ti"><span class="tt2">17:15</span>🖼️ Set up Photo Gallery（與Leung & 南）</div>
+  </div></div>
+
+  <div class="pc"><div class="ph2"><div class="av" style="background:var(--coral-bg);color:var(--coral-txt)">南</div><div><div class="pn">南</div><div class="pr">交通 / 花車 / Photo Gallery / 外拍</div></div></div><div class="tl">
+    <div class="ti"><span class="tt2">12:30–12:45</span>📦 將物資搬上 28VAN</div>
+    <div class="ti"><span class="tt2">禮後</span>🚗 佈置酒店花車（與Leung，2:30前完成）</div>
+    <div class="ti"><span class="tt2">禮後</span>📸 門外拍照（按名單，最遲15:15）（與Hubert）</div>
+    <div class="ti"><span class="tt2">17:15</span>🖼️ Set up Photo Gallery（與Leung & Eman）</div>
+  </div></div>
+
+  <div class="pc"><div class="ph2"><div class="av" style="background:var(--blue-bg);color:var(--blue-txt)">Rose弟</div><div><div class="pn">Rose 弟弟</div><div class="pr">房卡 / 佈置 / MC電腦 / 多比</div></div></div><div class="tl">
+    <div class="ti"><span class="tt2">15:45</span>🔑 到酒店取房卡 ×3 間</div>
+    <div class="ti"><span class="tt2">15:45</span>🏠 佈置新人房（for 17:50 補敬茶）</div>
+    <div class="ti"><span class="tt2">15:45</span>📞 與酒店聯絡敬茶茶具</div>
+    <div class="ti"><span class="tt2">16:30</span>💻 交電腦 & USB 給 MC</div>
+    <div class="ti"><span class="tt2">18:15</span>💰 坐Reception 收利是（女家，與Cherrie）</div>
+    <div class="ti"><span class="tt2">19:00</span>🐶 帶多比上房 + 餵晚餐 + 哄哄</div>
+    <div class="ti"><span class="tt2">22:30</span>💳 找尾數（與Cherrie）</div>
+  </div></div>
+
+  <div class="pc"><div class="ph2"><div class="av" style="background:var(--green-bg);color:var(--green-txt)">兄弟團</div><div><div class="pn">兄弟團</div><div class="pr">物資 / Reception / 場地</div></div></div><div class="tl">
+    <div class="ti"><span class="tt2">早上</span>📦 點齊所有婚禮物資</div>
+    <div class="ti"><span class="tt2">~12:30</span>📦 將物資搬上 28VAN</div>
+    <div class="ti"><span class="tt2">17:15</span>🗂️ Set up Reception Table（油畫、利是封、糖果盆、簽名簿、公仔等）</div>
+    <div class="ti"><span class="tt2">18:15</span>👋 大家互補位，招呼來賓</div>
+    <div class="ti"><span class="tt2">18:30</span>🎊 進場綵排 & Photo Booth</div>
+  </div></div>
+
+  <div class="pc"><div class="ph2"><div class="av" style="background:var(--pink-bg);color:var(--pink-txt)">姐妹圈</div><div><div class="pn">姐妹圈</div><div class="pr">敬茶 / 換裝協助</div></div></div><div class="tl">
+    <div class="ti"><span class="tt2">17:30</span>☕ 上房幫忙敬茶</div>
+    <div class="ti"><span class="tt2">21:00</span>👗 協助新娘換裝 & 戴金器</div>
+  </div></div>
+</div>
+
+<!-- ===== P3 TRANSPORT ===== -->
+<div class="tab-panel p3">
+  <div class="tc"><div class="th"><div class="ti2">🚌</div><div><div class="tn">28人 VAN</div><div class="ts">Leung 負責全日聯絡</div></div></div>
+    <div class="leg"><div class="lt">12:30–12:45</div><div class="lr">📍 葵涌 Studio <span class="la">→</span> 聖堂（堅道16號）西隧</div><div class="lp">乘客：全體兄弟姊妹及親友</div></div>
+    <div class="leg"><div class="lt">~15:15</div><div class="lr">📍 聖堂 <span class="la">→</span> 朗廷酒店</div><div class="lp">乘客：Rose媽媽、Rose弟、多比、花仔花女及家人</div></div>
+    <div class="leg"><div class="lt">16:50</div><div class="lr">📍 M+ <span class="la">→</span> 朗廷酒店（北京道8號）</div><div class="lp">乘客：全體（外景後）</div></div>
+  </div>
+  <div class="tc"><div class="th"><div class="ti2">🚗</div><div><div class="tn">私家車 WE1776</div><div class="ts">Hubert 駕駛</div></div></div>
+    <div class="leg"><div class="lt">~12:45</div><div class="lr">📍 葵涌 Studio <span class="la">→</span> 聖堂</div><div class="lp">新人 · Hubert · 媽媽 · Rose弟 · 多比</div></div>
+    <div class="leg"><div class="lt">~15:15（禮後）</div><div class="lr">📍 聖堂 <span class="la">→</span> M+</div><div class="lp">Hubert · 女友 · 兄弟團</div></div>
+    <div class="leg"><div class="lt">16:50</div><div class="lr">📍 M+ <span class="la">→</span> 朗廷酒店</div><div class="lp">Hubert 揸車</div></div>
+  </div>
+  <div class="tc"><div class="th"><div class="ti2">💐</div><div><div class="tn">新人花車 / 酒店花車</div><div class="ts">Leung 負責聯絡司機 · Leung + 南 負責佈置（2:30前完成）</div></div></div>
+    <div class="leg"><div class="lt">禮後 ~15:15</div><div class="lr">📍 聖堂 <span class="la">→</span> M+ 外景</div><div class="lp">新人（花車）</div></div>
+    <div class="leg"><div class="lt">禮後 ~15:15</div><div class="lr">📍 聖堂 <span class="la">→</span> 朗廷酒店</div><div class="lp">兄弟姊妹（同一輛花車）</div></div>
+    <div class="leg"><div class="lt">16:50</div><div class="lr">📍 M+ <span class="la">→</span> 朗廷酒店</div><div class="lp">新人</div></div>
+  </div>
+</div>
+
+<div class="tab-panel p4">
+  <div class="cl-section"><div class="cg-title">婚前確認 <span class="cg-badge">婚禮前</span></div>
+    <input class="cl-cb" type="checkbox" id="c1"><label class="cl-item" for="c1"><div class="cl-box"></div><span class="cl-lbl">確認 MC 流程（交電腦 & USB）</span></label>
+    <input class="cl-cb" type="checkbox" id="c2"><label class="cl-item" for="c2"><div class="cl-box"></div><span class="cl-lbl">準備合照名單</span></label>
+    <input class="cl-cb" type="checkbox" id="c3"><label class="cl-item" for="c3"><div class="cl-box"></div><span class="cl-lbl">確認花仔花女服裝及聯絡（然然 9379 3114、喬喬 6224 6207）</span></label>
+    <input class="cl-cb" type="checkbox" id="c4"><label class="cl-item" for="c4"><div class="cl-box"></div><span class="cl-lbl">確認領經員 Elsa Leung（9431 3188）及讀經員 Thomas Tsang（9191 4882）</span></label>
+    <input class="cl-cb" type="checkbox" id="c5"><label class="cl-item" for="c5"><div class="cl-box"></div><span class="cl-lbl">確認外景道具清單（Jeremy & Agnes）</span></label>
+    <input class="cl-cb" type="checkbox" id="c6"><label class="cl-item" for="c6"><div class="cl-box"></div><span class="cl-lbl">確認 28VAN 司機聯絡方式（Leung）</span></label>
+    <input class="cl-cb" type="checkbox" id="c7"><label class="cl-item" for="c7"><div class="cl-box"></div><span class="cl-lbl">確認新人花車司機（Leung）</span></label>
+    <input class="cl-cb" type="checkbox" id="c8"><label class="cl-item" for="c8"><div class="cl-box"></div><span class="cl-lbl">確認 Photo Booth：Tel 54022000，時間 6:15–8:15PM</span></label>
+    <input class="cl-cb" type="checkbox" id="c9"><label class="cl-item" for="c9"><div class="cl-box"></div><span class="cl-lbl">準備酒店職員利是（Mandy）</span></label>
+    <input class="cl-cb" type="checkbox" id="c10"><label class="cl-item" for="c10"><div class="cl-box"></div><span class="cl-lbl">準備Crew meal 名單（MC、化妝師×2、攝影師×3）</span></label>
+    <input class="cl-cb" type="checkbox" id="c11"><label class="cl-item" for="c11"><div class="cl-box"></div><span class="cl-lbl">準備門外拍照順序名單</span></label>
+  </div>
+  <div class="cl-section"><div class="cg-title">化妝時段 <span class="cg-badge">10:00–12:45</span></div>
+    <input class="cl-cb" type="checkbox" id="c12"><label class="cl-item" for="c12"><div class="cl-box"></div><span class="cl-lbl">新娘、新郎、媽媽從深井出發</span></label>
+    <input class="cl-cb" type="checkbox" id="c13"><label class="cl-item" for="c13"><div class="cl-box"></div><span class="cl-lbl">Jeremy 幫多比穿裝飾完成</span></label>
+    <input class="cl-cb" type="checkbox" id="c14"><label class="cl-item" for="c14"><div class="cl-box"></div><span class="cl-lbl">攝影師 Dennis 團隊 11:00 到場</span></label>
+    <input class="cl-cb" type="checkbox" id="c15"><label class="cl-item" for="c15"><div class="cl-box"></div><span class="cl-lbl">派發襟花（男方：新郎、Hubert；女方：媽媽）</span></label>
+    <input class="cl-cb" type="checkbox" id="c16"><label class="cl-item" for="c16"><div class="cl-box"></div><span class="cl-lbl">兄弟點齊所有物資</span></label>
+    <input class="cl-cb" type="checkbox" id="c17"><label class="cl-item" for="c17"><div class="cl-box"></div><span class="cl-lbl">28VAN 12:30 到場，物資搬上車</span></label>
+  </div>
+  <div class="cl-section"><div class="cg-title">聖堂 <span class="cg-badge">13:30–15:15</span></div>
+    <input class="cl-cb" type="checkbox" id="c18"><label class="cl-item" for="c18"><div class="cl-box"></div><span class="cl-lbl">Agnes 確認領經員 & 讀經員已到</span></label>
+    <input class="cl-cb" type="checkbox" id="c19"><label class="cl-item" for="c19"><div class="cl-box"></div><span class="cl-lbl">花仔花女到場及彩排</span></label>
+    <input class="cl-cb" type="checkbox" id="c20"><label class="cl-item" for="c20"><div class="cl-box"></div><span class="cl-lbl">禮儀小冊子準備派發</span></label>
+    <input class="cl-cb" type="checkbox" id="c21"><label class="cl-item" for="c21"><div class="cl-box"></div><span class="cl-lbl">派發襟花（男：爸爸、哥哥、妹妹；女：爸爸、弟弟）</span></label>
+    <input class="cl-cb" type="checkbox" id="c22"><label class="cl-item" for="c22"><div class="cl-box"></div><span class="cl-lbl">Leung & 南 佈置酒店花車（2:30前完成）</span></label>
+    <input class="cl-cb" type="checkbox" id="c23"><label class="cl-item" for="c23"><div class="cl-box"></div><span class="cl-lbl">門外拍照完成（最遲 15:15）</span></label>
+    <input class="cl-cb" type="checkbox" id="c24"><label class="cl-item" for="c24"><div class="cl-box"></div><span class="cl-lbl">Hubert 保管：戒指、新人身份證、結婚證書</span></label>
+  </div>
+  <div class="cl-section"><div class="cg-title">外景 M+ <span class="cg-badge">15:45–16:50</span></div>
+    <input class="cl-cb" type="checkbox" id="c25"><label class="cl-item" for="c25"><div class="cl-box"></div><span class="cl-lbl">外景道具點算完成（Jeremy & Agnes）</span></label>
+    <input class="cl-cb" type="checkbox" id="c26"><label class="cl-item" for="c26"><div class="cl-box"></div><span class="cl-lbl">Rose弟取酒店房卡 ×3，佈置新人房</span></label>
+    <input class="cl-cb" type="checkbox" id="c27"><label class="cl-item" for="c27"><div class="cl-box"></div><span class="cl-lbl">Rose弟與酒店聯絡敬茶茶具</span></label>
+    <input class="cl-cb" type="checkbox" id="c28"><label class="cl-item" for="c28"><div class="cl-box"></div><span class="cl-lbl">⚠️ 16:50 全員離開 M+</span></label>
+  </div>
+  <div class="cl-section"><div class="cg-title">酒店布置 <span class="cg-badge">17:15–18:15</span></div>
+    <input class="cl-cb" type="checkbox" id="c29"><label class="cl-item" for="c29"><div class="cl-box"></div><span class="cl-lbl">Rose弟 16:30 交電腦 & USB 給 MC</span></label>
+    <input class="cl-cb" type="checkbox" id="c30"><label class="cl-item" for="c30"><div class="cl-box"></div><span class="cl-lbl">Reception backdrop & table 布置完成</span></label>
+    <input class="cl-cb" type="checkbox" id="c31"><label class="cl-item" for="c31"><div class="cl-box"></div><span class="cl-lbl">Photo gallery set up（Leung, Eman, 南）</span></label>
+    <input class="cl-cb" type="checkbox" id="c32"><label class="cl-item" for="c32"><div class="cl-box"></div><span class="cl-lbl">Agnes 檢查每個位的回禮禮物</span></label>
+    <input class="cl-cb" type="checkbox" id="c33"><label class="cl-item" for="c33"><div class="cl-box"></div><span class="cl-lbl">Photo Booth 17:30 到場確認（Tel: 54022000）</span></label>
+    <input class="cl-cb" type="checkbox" id="c34"><label class="cl-item" for="c34"><div class="cl-box"></div><span class="cl-lbl">敬茶完成（Mandy 遞茶，Cherrie & Hubert 收金器）</span></label>
+    <input class="cl-cb" type="checkbox" id="c35"><label class="cl-item" for="c35"><div class="cl-box"></div><span class="cl-lbl">Mandy 俾利是酒店經理（有其他職員見證）（17:15）</span></label>
+  </div>
+  <div class="cl-section"><div class="cg-title">晚宴 <span class="cg-badge">18:15–23:30</span></div>
+    <input class="cl-cb" type="checkbox" id="c35b"><label class="cl-item" for="c35b"><div class="cl-box"></div><span class="cl-lbl">19:30 MC 通知來賓 Photo Booth 截止時間 8:15PM</span></label>
+    <input class="cl-cb" type="checkbox" id="c36"><label class="cl-item" for="c36"><div class="cl-box"></div><span class="cl-lbl">Jeremy 叫 Foodpanda Crew meal（6份）</span></label>
+    <input class="cl-cb" type="checkbox" id="c36b"><label class="cl-item" for="c36b"><div class="cl-box"></div><span class="cl-lbl">MC 通知來賓 Photo Booth 截止時間 8:15PM</span></label>
+    <input class="cl-cb" type="checkbox" id="c37"><label class="cl-item" for="c37"><div class="cl-box"></div><span class="cl-lbl">Mandy 保管新娘房鎖匙（19:00）</span></label>
+    <input class="cl-cb" type="checkbox" id="c38"><label class="cl-item" for="c38"><div class="cl-box"></div><span class="cl-lbl">Rose弟 19:00 帶多比上房餵食</span></label>
+    <input class="cl-cb" type="checkbox" id="c39"><label class="cl-item" for="c39"><div class="cl-box"></div><span class="cl-lbl">合照名單準備好（20:30 合照時段）</span></label>
+    <input class="cl-cb" type="checkbox" id="c40"><label class="cl-item" for="c40"><div class="cl-box"></div><span class="cl-lbl">2–3位姐妹 21:00 幫新娘換裝 & 戴金器</span></label>
+    <input class="cl-cb" type="checkbox" id="c41"><label class="cl-item" for="c41"><div class="cl-box"></div><span class="cl-lbl">Cherrie 帶零食入新娘房</span></label>
+    <input class="cl-cb" type="checkbox" id="c42"><label class="cl-item" for="c42"><div class="cl-box"></div><span class="cl-lbl">所有利是 / 金器收妥點算</span></label>
+    <input class="cl-cb" type="checkbox" id="c43"><label class="cl-item" for="c43"><div class="cl-box"></div><span class="cl-lbl">送客完成（~22:15）</span></label>
+    <input class="cl-cb" type="checkbox" id="c44"><label class="cl-item" for="c44"><div class="cl-box"></div><span class="cl-lbl">找尾數：酒店、Photo Booth、佈置公司、MC（Cherrie & Rose弟）</span></label>
+    <input class="cl-cb" type="checkbox" id="c45"><label class="cl-item" for="c45"><div class="cl-box"></div><span class="cl-lbl">清場及交場完成（最遲 23:30）</span></label>
+  </div>
+</div>
+
+
+<!-- ===== P5 SUPPLIES ===== -->
+<div class="tab-panel p5">
+
+  <div id="sp-filter-wrap" style="margin-bottom:14px">
+    <div style="font-size:11px;color:var(--txt2);font-weight:600;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:8px">篩選負責人</div>
+    <div style="display:flex;flex-wrap:wrap;gap:4px">
+      <label class="rd-filter-lbl sp-lbl-all" for="sp-all">全部</label>
+      <label class="rd-filter-lbl sp-lbl-sp-xr" for="sp-xr">新人</label>
+      <label class="rd-filter-lbl sp-lbl-sp-hu" for="sp-hu">Hubert</label>
+      <label class="rd-filter-lbl sp-lbl-sp-ma" for="sp-ma">Mandy</label>
+      <label class="rd-filter-lbl sp-lbl-sp-ag" for="sp-ag">Agnes</label>
+      <label class="rd-filter-lbl sp-lbl-sp-ch" for="sp-ch">Cherrie</label>
+      <label class="rd-filter-lbl sp-lbl-sp-je" for="sp-je">Jeremy</label>
+      <label class="rd-filter-lbl sp-lbl-sp-le" for="sp-le">Leung</label>
+      <label class="rd-filter-lbl sp-lbl-sp-sb" for="sp-sb">新娘細佬</label>
+    </div>
+  </div>
+
+  <div style="background:var(--red-bg);color:var(--red-txt);border-radius:var(--r);padding:8px 12px;font-size:12px;font-weight:700;margin-bottom:12px" data-section="list1" class="sp-section-hdr">📦 List 1 — BIG DAY 前一日送到酒店</div>
+  <div class="sp-cat" data-section="list1">
+    <div class="sp-hdr"><div class="sp-icon" style="background:var(--red-bg)">🏨</div><div><div class="sp-title">全部物資</div><div class="sp-sub">新人 · 早一日送到朗廷酒店</div></div></div>
+    <div class="sp-items-wrap">
+      <input class="sp-cb sp-xr" type="checkbox" id="p1"><label class="sp-item sp-xr" for="p1" data-owner="新人"><div class="sp-box"></div><span class="sp-name">晚宴婚紗 ×3 <span style="font-size:10px;color:var(--txt3)">(新人)</span></span></label>
+      <input class="sp-cb sp-xr" type="checkbox" id="p2"><label class="sp-item sp-xr" for="p2" data-owner="新人"><div class="sp-box"></div><span class="sp-name">證婚頭紗 <span style="font-size:10px;color:var(--txt3)">(新人)</span></span></label>
+      <input class="sp-cb sp-xr" type="checkbox" id="p3"><label class="sp-item sp-xr" for="p3" data-owner="新人"><div class="sp-box"></div><span class="sp-name">相框 ×2 <span style="font-size:10px;color:var(--txt3)">(新人)</span></span></label>
+      <input class="sp-cb sp-xr" type="checkbox" id="p4"><label class="sp-item sp-xr" for="p4" data-owner="新人"><div class="sp-box"></div><span class="sp-name">桌框 ×2 <span style="font-size:10px;color:var(--txt3)">(新人)</span></span></label>
+      <input class="sp-cb sp-xr" type="checkbox" id="p5"><label class="sp-item sp-xr" for="p5" data-owner="新人"><div class="sp-box"></div><span class="sp-name">婚紗相簿（共2本） <span style="font-size:10px;color:var(--txt3)">(新人)</span></span></label>
+      <input class="sp-cb sp-xr" type="checkbox" id="p6"><label class="sp-item sp-xr" for="p6" data-owner="新人"><div class="sp-box"></div><span class="sp-name">Photo Gallery 佈置 <span style="font-size:10px;color:var(--txt3)">(新人)</span></span></label>
+      <input class="sp-cb sp-xr" type="checkbox" id="p7"><label class="sp-item sp-xr" for="p7" data-owner="新人"><div class="sp-box"></div><span class="sp-name">一二布布站立版 <span style="font-size:10px;color:var(--txt3)">(新人)</span></span></label>
+      <input class="sp-cb sp-xr" type="checkbox" id="p8"><label class="sp-item sp-xr" for="p8" data-owner="新人"><div class="sp-box"></div><span class="sp-name">多比站立版 <span style="font-size:10px;color:var(--txt3)">(新人)</span></span></label>
+      <input class="sp-cb sp-xr" type="checkbox" id="p9"><label class="sp-item sp-xr" for="p9" data-owner="新人"><div class="sp-box"></div><span class="sp-name">回禮禮物（154份） <span style="font-size:10px;color:var(--txt3)">(新人)</span></span></label>
+      <input class="sp-cb sp-xr" type="checkbox" id="p10"><label class="sp-item sp-xr" for="p10" data-owner="新人"><div class="sp-box"></div><span class="sp-name">敬茶用品 <span style="font-size:10px;color:var(--txt3)">(新人)</span></span></label>
+      <input class="sp-cb sp-xr" type="checkbox" id="p11"><label class="sp-item sp-xr" for="p11" data-owner="新人"><div class="sp-box"></div><span class="sp-name">新娘房佈置 <span style="font-size:10px;color:var(--txt3)">(新人)</span></span></label>
+      <input class="sp-cb sp-xr" type="checkbox" id="p12"><label class="sp-item sp-xr" for="p12" data-owner="新人"><div class="sp-box"></div><span class="sp-name">酒店 Reception 佈置 <span style="font-size:10px;color:var(--txt3)">(新人)</span></span></label>
+      <input class="sp-cb sp-xr" type="checkbox" id="p13"><label class="sp-item sp-xr" for="p13" data-owner="新人"><div class="sp-box"></div><span class="sp-name">酒店用品 <span style="font-size:10px;color:var(--txt3)">(新人)</span></span></label>
+      <input class="sp-cb sp-xr" type="checkbox" id="p14"><label class="sp-item sp-xr" for="p14" data-owner="新人"><div class="sp-box"></div><span class="sp-name">便服 / 便服鞋 <span style="font-size:10px;color:var(--txt3)">(新人)</span></span></label>
+      <input class="sp-cb sp-xr" type="checkbox" id="p15"><label class="sp-item sp-xr" for="p15" data-owner="新人"><div class="sp-box"></div><span class="sp-name">化妝品 / 落妝用品 <span style="font-size:10px;color:var(--txt3)">(新人)</span></span></label>
+      <input class="sp-cb sp-xr" type="checkbox" id="p16"><label class="sp-item sp-xr" for="p16" data-owner="新人"><div class="sp-box"></div><span class="sp-name">充電器 <span style="font-size:10px;color:var(--txt3)">(新人)</span></span></label>
+      <input class="sp-cb sp-xr" type="checkbox" id="p17"><label class="sp-item sp-xr" for="p17" data-owner="新人"><div class="sp-box"></div><span class="sp-name">隱形眼鏡 / 眼鏡 <span style="font-size:10px;color:var(--txt3)">(新人)</span></span></label>
+    </div>
+  </div>
+  <div style="background:var(--amber-bg);color:var(--amber-txt);border-radius:var(--r);padding:8px 12px;font-size:12px;font-weight:700;margin-bottom:12px;margin-top:8px" data-section="list2" class="sp-section-hdr">🎒 List 2 — BIG DAY 當日帶</div>
+  <div class="sp-cat" data-section="list2">
+    <div class="sp-hdr"><div class="sp-icon" style="background:var(--green-bg)">🎒</div><div><div class="sp-title">其他當日帶</div><div class="sp-sub">各負責人自帶</div></div></div>
+    <div class="sp-items-wrap">
+      <input class="sp-cb sp-ch" type="checkbox" id="g1"><label class="sp-item sp-ch" for="g1" data-owner="Cherrie"><div class="sp-box"></div><span class="sp-name">兄弟姐妹襟花 / 手花 + 印水紙 <span style="font-size:10px;color:var(--txt3)">(Cherrie)</span></span></label>
+      <input class="sp-cb sp-je" type="checkbox" id="g2"><label class="sp-item sp-je" for="g2" data-owner="Jeremy"><div class="sp-box"></div><span class="sp-name">外景拍攝道具 + 雨傘 <span style="font-size:10px;color:var(--txt3)">(Jeremy)</span></span></label>
+      <input class="sp-cb sp-le" type="checkbox" id="g3"><label class="sp-item sp-le" for="g3" data-owner="Leung"><div class="sp-box"></div><span class="sp-name">花車裝飾 <span style="font-size:10px;color:var(--txt3)">(Leung)</span></span></label>
+      <input class="sp-cb sp-ch" type="checkbox" id="g4"><label class="sp-item sp-ch" for="g4" data-owner="Cherrie"><div class="sp-box"></div><span class="sp-name">利是 / 金器 <span style="font-size:10px;color:var(--txt3)">(Cherrie)</span></span></label>
+      <input class="sp-cb" type="checkbox" id="g5"><label class="sp-item" for="g5" data-owner="新娘"><div class="sp-box"></div><span class="sp-name">姐妹禮物 <span style="font-size:10px;color:var(--txt3)">(新娘)</span></span></label>
+    </div>
+  </div>
+  <div class="sp-cat" data-section="list2">
+    <div class="sp-hdr"><div class="sp-icon" style="background:var(--purple-bg)">⛪</div><div><div class="sp-title">聖堂</div><div class="sp-sub">13:30 · Hubert / Mandy / Agnes</div></div></div>
+    <div class="sp-items-wrap">
+      <input class="sp-cb sp-hu" type="checkbox" id="c1"><label class="sp-item sp-hu" for="c1" data-owner="Hubert"><div class="sp-box"></div><span class="sp-name">結婚戒指 <span style="font-size:10px;color:var(--txt3)">(Hubert)</span></span></label>
+      <input class="sp-cb sp-hu" type="checkbox" id="c2"><label class="sp-item sp-hu" for="c2" data-owner="Hubert"><div class="sp-box"></div><span class="sp-name">新人身份證明文件 <span style="font-size:10px;color:var(--txt3)">(Hubert)</span></span></label>
+      <input class="sp-cb sp-ma" type="checkbox" id="c3"><label class="sp-item sp-ma" for="c3" data-owner="Mandy"><div class="sp-box"></div><span class="sp-name">花球（新娘拿住） <span style="font-size:10px;color:var(--txt3)">(Mandy)</span></span></label>
+      <input class="sp-cb sp-ma" type="checkbox" id="c4"><label class="sp-item sp-ma" for="c4" data-owner="Mandy"><div class="sp-box"></div><span class="sp-name">花球（拋） <span style="font-size:10px;color:var(--txt3)">(Mandy)</span></span></label>
+      <input class="sp-cb sp-ma" type="checkbox" id="c5"><label class="sp-item sp-ma" for="c5" data-owner="Mandy"><div class="sp-box"></div><span class="sp-name">禮儀小冊子 <span style="font-size:10px;color:var(--txt3)">(Mandy)</span></span></label>
+      <input class="sp-cb sp-ma" type="checkbox" id="c6"><label class="sp-item sp-ma" for="c6" data-owner="Mandy"><div class="sp-box"></div><span class="sp-name">證書簽名羽毛筆 <span style="font-size:10px;color:var(--txt3)">(Mandy)</span></span></label>
+      <input class="sp-cb sp-ma" type="checkbox" id="c7"><label class="sp-item sp-ma" for="c7" data-owner="Mandy"><div class="sp-box"></div><span class="sp-name">證書 folder <span style="font-size:10px;color:var(--txt3)">(Mandy)</span></span></label>
+      <input class="sp-cb sp-ag" type="checkbox" id="c8"><label class="sp-item sp-ag" for="c8" data-owner="Agnes"><div class="sp-box"></div><span class="sp-name">利是封 <span style="font-size:10px;color:var(--txt3)">(Agnes)</span></span></label>
+      <input class="sp-cb" type="checkbox" id="c9"><label class="sp-item" for="c9" data-owner=""><div class="sp-box"></div><span class="sp-name">文具袋</span></label>
+      <input class="sp-cb sp-ch" type="checkbox" id="c10"><label class="sp-item sp-ch" for="c10" data-owner="Cherrie"><div class="sp-box"></div><span class="sp-name">人情袋連記錄表 <span style="font-size:10px;color:var(--txt3)">(Cherrie)</span></span></label>
+    </div>
+  </div>
+  <div class="sp-cat" data-section="list2">
+    <div class="sp-hdr"><div class="sp-icon" style="background:var(--teal-bg)">☕</div><div><div class="sp-title">敬茶</div><div class="sp-sub">17:30 · 酒店提供茶具（除紙杯）</div></div></div>
+    <div class="sp-items-wrap">
+      <input class="sp-cb sp-xr" type="checkbox" id="t1"><label class="sp-item sp-xr" for="t1" data-owner="新人"><div class="sp-box"></div><span class="sp-name">紙杯（自備） <span style="font-size:10px;color:var(--txt3)">(新人)</span></span></label>
+    </div>
+  </div>
+  <div class="sp-cat" data-section="list2">
+    <div class="sp-hdr"><div class="sp-icon" style="background:var(--amber-bg)">🥂</div><div><div class="sp-title">晚宴</div><div class="sp-sub">17:15起 · 各人負責</div></div></div>
+    <div class="sp-items-wrap">
+      <input class="sp-cb sp-sb" type="checkbox" id="b1"><label class="sp-item sp-sb" for="b1" data-owner="新娘細佬"><div class="sp-box"></div><span class="sp-name">USB + 電腦（音樂 & 成長片段 & 婚紗相） <span style="font-size:10px;color:var(--txt3)">(新娘細佬)</span></span></label>
+      <input class="sp-cb sp-ch" type="checkbox" id="b2"><label class="sp-item sp-ch" for="b2" data-owner="Cherrie"><div class="sp-box"></div><span class="sp-name">晚宴致辭卡 <span style="font-size:10px;color:var(--txt3)">(Cherrie)</span></span></label>
+    </div>
+  </div>
+</div>
+
+
+<!-- ===== P6 CONTACTS ===== -->
+<div class="tab-panel p6">
+  <div class="cl-section">
+    <div class="cg-title">兄弟姊妹</div>
+    <div style="background:var(--bg);border:1px solid var(--border);border-radius:var(--rl);overflow:hidden;">
+      <div style="display:flex;padding:8px 12px;border-bottom:1px solid var(--border);align-items:center;gap:10px">
+        <div style="width:36px;height:36px;border-radius:50%;background:var(--blue-bg);color:var(--blue-txt);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">Ivan</div>
+        <div style="flex:1"><div style="font-size:13px;font-weight:600">Ivan</div><div style="font-size:11px;color:var(--txt2)">新郎</div></div>
+        <a href="tel:62300595" style="font-size:13px;color:var(--blue-txt);text-decoration:none;font-weight:500">62300595</a>
+      </div>      <div style="display:flex;padding:8px 12px;border-bottom:1px solid var(--border);align-items:center;gap:10px">
+        <div style="width:36px;height:36px;border-radius:50%;background:var(--purple-bg);color:var(--purple-txt);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">Hubert</div>
+        <div style="flex:1"><div style="font-size:13px;font-weight:600">Hubert</div><div style="font-size:11px;color:var(--txt2)">伴郎（主）</div></div>
+        <a href="tel:64385676" style="font-size:13px;color:var(--blue-txt);text-decoration:none;font-weight:500">64385676</a>
+      </div>      <div style="display:flex;padding:8px 12px;border-bottom:1px solid var(--border);align-items:center;gap:10px">
+        <div style="width:36px;height:36px;border-radius:50%;background:var(--blue-bg);color:var(--blue-txt);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">Leung</div>
+        <div style="flex:1"><div style="font-size:13px;font-weight:600">Leung</div><div style="font-size:11px;color:var(--txt2)">兄弟（副）</div></div>
+        <a href="tel:64900765" style="font-size:13px;color:var(--blue-txt);text-decoration:none;font-weight:500">64900765</a>
+      </div>      <div style="display:flex;padding:8px 12px;border-bottom:1px solid var(--border);align-items:center;gap:10px">
+        <div style="width:36px;height:36px;border-radius:50%;background:var(--purple-bg);color:var(--purple-txt);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">Eman</div>
+        <div style="flex:1"><div style="font-size:13px;font-weight:600">Eman</div><div style="font-size:11px;color:var(--txt2)">兄弟</div></div>
+        <a href="tel:69392709" style="font-size:13px;color:var(--blue-txt);text-decoration:none;font-weight:500">69392709</a>
+      </div>      <div style="display:flex;padding:8px 12px;border-bottom:1px solid var(--border);align-items:center;gap:10px">
+        <div style="width:36px;height:36px;border-radius:50%;background:var(--coral-bg);color:var(--coral-txt);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">Nam</div>
+        <div style="flex:1"><div style="font-size:13px;font-weight:600">Nam</div><div style="font-size:11px;color:var(--txt2)">兄弟</div></div>
+        <a href="tel:98385642" style="font-size:13px;color:var(--blue-txt);text-decoration:none;font-weight:500">98385642</a>
+      </div>      <div style="display:flex;padding:8px 12px;border-bottom:1px solid var(--border);align-items:center;gap:10px">
+        <div style="width:36px;height:36px;border-radius:50%;background:var(--pink-bg);color:var(--pink-txt);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">Rose</div>
+        <div style="flex:1"><div style="font-size:13px;font-weight:600">Rose</div><div style="font-size:11px;color:var(--txt2)">新娘</div></div>
+        <a href="tel:95843359" style="font-size:13px;color:var(--blue-txt);text-decoration:none;font-weight:500">95843359</a>
+      </div>      <div style="display:flex;padding:8px 12px;border-bottom:1px solid var(--border);align-items:center;gap:10px">
+        <div style="width:36px;height:36px;border-radius:50%;background:var(--teal-bg);color:var(--teal-txt);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">Cherrie</div>
+        <div style="flex:1"><div style="font-size:13px;font-weight:600">Cherrie</div><div style="font-size:11px;color:var(--txt2)">伴娘（主）</div></div>
+        <a href="tel:66545415" style="font-size:13px;color:var(--blue-txt);text-decoration:none;font-weight:500">66545415</a>
+      </div>      <div style="display:flex;padding:8px 12px;border-bottom:1px solid var(--border);align-items:center;gap:10px">
+        <div style="width:36px;height:36px;border-radius:50%;background:var(--pink-bg);color:var(--pink-txt);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">Mandy</div>
+        <div style="flex:1"><div style="font-size:13px;font-weight:600">Mandy</div><div style="font-size:11px;color:var(--txt2)">姊妹（副）</div></div>
+        <a href="tel:95705610" style="font-size:13px;color:var(--blue-txt);text-decoration:none;font-weight:500">95705610</a>
+      </div>      <div style="display:flex;padding:8px 12px;border-bottom:1px solid var(--border);align-items:center;gap:10px">
+        <div style="width:36px;height:36px;border-radius:50%;background:var(--pink-bg);color:var(--pink-txt);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">Agnes</div>
+        <div style="flex:1"><div style="font-size:13px;font-weight:600">Agnes</div><div style="font-size:11px;color:var(--txt2)">姊妹</div></div>
+        <a href="tel:93000971" style="font-size:13px;color:var(--blue-txt);text-decoration:none;font-weight:500">93000971</a>
+      </div>      <div style="display:flex;padding:8px 12px;align-items:center;gap:10px">
+        <div style="width:36px;height:36px;border-radius:50%;background:var(--amber-bg);color:var(--amber-txt);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">Jeremy</div>
+        <div style="flex:1"><div style="font-size:13px;font-weight:600">Jeremy</div><div style="font-size:11px;color:var(--txt2)">姊妹</div></div>
+        <a href="tel:68005710" style="font-size:13px;color:var(--blue-txt);text-decoration:none;font-weight:500">68005710</a>
+      </div>
+    </div>
+  </div>
+  <div class="cl-section">
+    <div class="cg-title">主家</div>
+    <div style="background:var(--bg);border:1px solid var(--border);border-radius:var(--rl);overflow:hidden;">
+      <div style="display:flex;padding:8px 12px;border-bottom:1px solid var(--border);align-items:center;gap:10px">
+        <div style="width:36px;height:36px;border-radius:50%;background:var(--bg3);color:var(--txt2);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">爸</div>
+        <div style="flex:1"><div style="font-size:13px;font-weight:600">楊小雄</div><div style="font-size:11px;color:var(--txt2)">新郎爸爸</div></div>
+        <a href="tel:46283350" style="font-size:13px;color:var(--blue-txt);text-decoration:none;font-weight:500">46283350</a>
+      </div>      <div style="display:flex;padding:8px 12px;border-bottom:1px solid var(--border);align-items:center;gap:10px">
+        <div style="width:36px;height:36px;border-radius:50%;background:var(--bg3);color:var(--txt2);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">爸</div>
+        <div style="flex:1"><div style="font-size:13px;font-weight:600">陳文</div><div style="font-size:11px;color:var(--txt2)">新娘爸爸</div></div>
+        <a href="tel:92063156" style="font-size:13px;color:var(--blue-txt);text-decoration:none;font-weight:500">92063156</a>
+      </div>      <div style="display:flex;padding:8px 12px;border-bottom:1px solid var(--border);align-items:center;gap:10px">
+        <div style="width:36px;height:36px;border-radius:50%;background:var(--bg3);color:var(--txt2);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">媽</div>
+        <div style="flex:1"><div style="font-size:13px;font-weight:600">黃敏瑤</div><div style="font-size:11px;color:var(--txt2)">新娘媽媽</div></div>
+        <a href="tel:94127897" style="font-size:13px;color:var(--blue-txt);text-decoration:none;font-weight:500">94127897</a>
+      </div>      <div style="display:flex;padding:8px 12px;border-bottom:1px solid var(--border);align-items:center;gap:10px">
+        <div style="width:36px;height:36px;border-radius:50%;background:var(--blue-bg);color:var(--blue-txt);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">Erick</div>
+        <div style="flex:1"><div style="font-size:13px;font-weight:600">Erick</div><div style="font-size:11px;color:var(--txt2)">新娘弟弟</div><div style="font-size:11px;color:var(--txt3)">台灣號碼</div></div>
+        <a href="tel:+886988833540" style="font-size:13px;color:var(--blue-txt);text-decoration:none;font-weight:500">+886988833540</a>
+      </div>      <div style="display:flex;padding:8px 12px;align-items:center;gap:10px">
+        <div style="width:36px;height:36px;border-radius:50%;background:var(--bg3);color:var(--txt2);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">如</div>
+        <div style="flex:1"><div style="font-size:13px;font-weight:600">如表姐</div><div style="font-size:11px;color:var(--txt2)">新娘大表姐</div></div>
+        <a href="tel:98864234" style="font-size:13px;color:var(--blue-txt);text-decoration:none;font-weight:500">98864234</a>
+      </div>
+    </div>
+  </div>
+  <div class="cl-section">
+    <div class="cg-title">VENDOR</div>
+    <div style="background:var(--bg);border:1px solid var(--border);border-radius:var(--rl);overflow:hidden;">
+      <div style="display:flex;padding:8px 12px;border-bottom:1px solid var(--border);align-items:center;gap:10px">
+        <div style="width:36px;height:36px;border-radius:50%;background:var(--green-bg);color:var(--green-txt);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">🚗</div>
+        <div style="flex:1"><div style="font-size:13px;font-weight:600">陳生</div><div style="font-size:11px;color:var(--txt2)">花車司機</div></div>
+        <a href="tel:55336102" style="font-size:13px;color:var(--blue-txt);text-decoration:none;font-weight:500">55336102</a>
+      </div>      <div style="display:flex;padding:8px 12px;border-bottom:1px solid var(--border);align-items:center;gap:10px">
+        <div style="width:36px;height:36px;border-radius:50%;background:var(--green-bg);color:var(--green-txt);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">🚌</div>
+        <div style="flex:1"><div style="font-size:13px;font-weight:600">28VAN司機</div></div>
+        <span style="font-size:12px;color:var(--txt3)">—</span>
+      </div>      <div style="display:flex;padding:8px 12px;border-bottom:1px solid var(--border);align-items:center;gap:10px">
+        <div style="width:36px;height:36px;border-radius:50%;background:var(--green-bg);color:var(--green-txt);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">💄</div>
+        <div style="flex:1"><div style="font-size:13px;font-weight:600">ABBY</div><div style="font-size:11px;color:var(--txt2)">新娘 MUA</div></div>
+        <a href="tel:64390748" style="font-size:13px;color:var(--blue-txt);text-decoration:none;font-weight:500">64390748</a>
+      </div>      <div style="display:flex;padding:8px 12px;border-bottom:1px solid var(--border);align-items:center;gap:10px">
+        <div style="width:36px;height:36px;border-radius:50%;background:var(--green-bg);color:var(--green-txt);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">💄</div>
+        <div style="flex:1"><div style="font-size:13px;font-weight:600">ABBY's team</div><div style="font-size:11px;color:var(--txt2)">姊妹 MUA</div></div>
+        <span style="font-size:12px;color:var(--txt3)">—</span>
+      </div>      <div style="display:flex;padding:8px 12px;border-bottom:1px solid var(--border);align-items:center;gap:10px">
+        <div style="width:36px;height:36px;border-radius:50%;background:var(--green-bg);color:var(--green-txt);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">📷</div>
+        <div style="flex:1"><div style="font-size:13px;font-weight:600">Dennis</div><div style="font-size:11px;color:var(--txt2)">攝影師1</div></div>
+        <a href="tel:95127995" style="font-size:13px;color:var(--blue-txt);text-decoration:none;font-weight:500">95127995</a>
+      </div>      <div style="display:flex;padding:8px 12px;border-bottom:1px solid var(--border);align-items:center;gap:10px">
+        <div style="width:36px;height:36px;border-radius:50%;background:var(--green-bg);color:var(--green-txt);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">📷</div>
+        <div style="flex:1"><div style="font-size:13px;font-weight:600">攝影師2</div></div>
+        <span style="font-size:12px;color:var(--txt3)">—</span>
+      </div>      <div style="display:flex;padding:8px 12px;align-items:center;gap:10px">
+        <div style="width:36px;height:36px;border-radius:50%;background:var(--green-bg);color:var(--green-txt);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">📷</div>
+        <div style="flex:1"><div style="font-size:13px;font-weight:600">攝影師3</div></div>
+        <span style="font-size:12px;color:var(--txt3)">—</span>
+      </div>
+    </div>
+  </div>
+  <div class="cl-section">
+    <div class="cg-title">證婚</div>
+    <div style="background:var(--bg);border:1px solid var(--border);border-radius:var(--rl);overflow:hidden;">
+      <div style="display:flex;padding:8px 12px;border-bottom:1px solid var(--border);align-items:center;gap:10px">
+        <div style="width:36px;height:36px;border-radius:50%;background:var(--green-bg);color:var(--green-txt);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">⛪</div>
+        <div style="flex:1"><div style="font-size:13px;font-weight:600">歐陽輝神父</div><div style="font-size:11px;color:var(--txt2)">神父</div></div>
+        <span style="font-size:12px;color:var(--txt3)">—</span>
+      </div>      <div style="display:flex;padding:8px 12px;border-bottom:1px solid var(--border);align-items:center;gap:10px">
+        <div style="width:36px;height:36px;border-radius:50%;background:var(--green-bg);color:var(--green-txt);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">📖</div>
+        <div style="flex:1"><div style="font-size:13px;font-weight:600">Thomas Tsang</div><div style="font-size:11px;color:var(--txt2)">領經員</div></div>
+        <a href="tel:91914882" style="font-size:13px;color:var(--blue-txt);text-decoration:none;font-weight:500">91914882</a>
+      </div>      <div style="display:flex;padding:8px 12px;border-bottom:1px solid var(--border);align-items:center;gap:10px">
+        <div style="width:36px;height:36px;border-radius:50%;background:var(--green-bg);color:var(--green-txt);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">📖</div>
+        <div style="flex:1"><div style="font-size:13px;font-weight:600">Elsa Leung</div><div style="font-size:11px;color:var(--txt2)">讀經員</div></div>
+        <a href="tel:94313188" style="font-size:13px;color:var(--blue-txt);text-decoration:none;font-weight:500">94313188</a>
+      </div>      <div style="display:flex;padding:8px 12px;border-bottom:1px solid var(--border);align-items:center;gap:10px">
+        <div style="width:36px;height:36px;border-radius:50%;background:var(--green-bg);color:var(--green-txt);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">🌸</div>
+        <div style="flex:1"><div style="font-size:13px;font-weight:600">Joan</div><div style="font-size:11px;color:var(--txt2)">花仔媽媽（然然 3歲）</div></div>
+        <a href="tel:93793114" style="font-size:13px;color:var(--blue-txt);text-decoration:none;font-weight:500">93793114</a>
+      </div>      <div style="display:flex;padding:8px 12px;align-items:center;gap:10px">
+        <div style="width:36px;height:36px;border-radius:50%;background:var(--green-bg);color:var(--green-txt);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">🌸</div>
+        <div style="flex:1"><div style="font-size:13px;font-weight:600">Ashley</div><div style="font-size:11px;color:var(--txt2)">花女媽媽（喬喬 5歲）</div></div>
+        <a href="tel:62246207" style="font-size:13px;color:var(--blue-txt);text-decoration:none;font-weight:500">62246207</a>
+      </div>
+    </div>
+  </div>
+  <div class="cl-section">
+    <div class="cg-title">婚宴場地</div>
+    <div style="background:var(--bg);border:1px solid var(--border);border-radius:var(--rl);overflow:hidden;">
+      <div style="display:flex;padding:8px 12px;border-bottom:1px solid var(--border);align-items:center;gap:10px">
+        <div style="width:36px;height:36px;border-radius:50%;background:var(--green-bg);color:var(--green-txt);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">🏨</div>
+        <div style="flex:1"><div style="font-size:13px;font-weight:600">Yancy Li</div><div style="font-size:11px;color:var(--txt2)">Sales</div></div>
+        <a href="tel:91891185" style="font-size:13px;color:var(--blue-txt);text-decoration:none;font-weight:500">91891185</a>
+      </div>      <div style="display:flex;padding:8px 12px;border-bottom:1px solid var(--border);align-items:center;gap:10px">
+        <div style="width:36px;height:36px;border-radius:50%;background:var(--green-bg);color:var(--green-txt);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">🏨</div>
+        <div style="flex:1"><div style="font-size:13px;font-weight:600">Benny Au</div><div style="font-size:11px;color:var(--txt2)">經理</div></div>
+        <a href="tel:91891186" style="font-size:13px;color:var(--blue-txt);text-decoration:none;font-weight:500">91891186</a>
+      </div>      <div style="display:flex;padding:8px 12px;border-bottom:1px solid var(--border);align-items:center;gap:10px">
+        <div style="width:36px;height:36px;border-radius:50%;background:var(--green-bg);color:var(--green-txt);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">🎤</div>
+        <div style="flex:1"><div style="font-size:13px;font-weight:600">Eric</div><div style="font-size:11px;color:var(--txt2)">婚禮司儀</div></div>
+        <a href="tel:62743555" style="font-size:13px;color:var(--blue-txt);text-decoration:none;font-weight:500">62743555</a>
+      </div>      <div style="display:flex;padding:8px 12px;border-bottom:1px solid var(--border);align-items:center;gap:10px">
+        <div style="width:36px;height:36px;border-radius:50%;background:var(--green-bg);color:var(--green-txt);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">✨</div>
+        <div style="flex:1"><div style="font-size:13px;font-weight:600">Jay Chan</div><div style="font-size:11px;color:var(--txt2)">場地佈置</div></div>
+        <a href="tel:93342362" style="font-size:13px;color:var(--blue-txt);text-decoration:none;font-weight:500">9334 2362</a>
+      </div>      <div style="display:flex;padding:8px 12px;border-bottom:1px solid var(--border);align-items:center;gap:10px">
+        <div style="width:36px;height:36px;border-radius:50%;background:var(--green-bg);color:var(--green-txt);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">📸</div>
+        <div style="flex:1"><div style="font-size:13px;font-weight:600">2K Photo</div><div style="font-size:11px;color:var(--txt2)">Photo Booth（6:15–8:15PM）</div></div>
+        <a href="tel:54022000" style="font-size:13px;color:var(--blue-txt);text-decoration:none;font-weight:500">54022000</a>
+      </div>      <div style="display:flex;padding:8px 12px;align-items:center;gap:10px">
+        <div style="width:36px;height:36px;border-radius:50%;background:var(--green-bg);color:var(--green-txt);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">🎂</div>
+        <div style="flex:1"><div style="font-size:13px;font-weight:600">結婚蛋糕</div><div style="font-size:11px;color:var(--txt2)">酒店送貨</div></div>
+        <span style="font-size:12px;color:var(--txt3)">—</span>
+      </div>
+    </div>
+  </div>
+  <div class="cl-section">
+    <div class="cg-title">其他</div>
+    <div style="background:var(--bg);border:1px solid var(--border);border-radius:var(--rl);overflow:hidden;">
+      <div style="padding:12px;font-size:13px;color:var(--txt3);text-align:center">暫無其他聯絡人</div>
+    </div>
+  </div>
+</div>
+
+</div>
+</div>
+
+</body>
+</html>
